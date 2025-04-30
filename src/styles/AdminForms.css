@@ -1,0 +1,110 @@
+/* Admin Products Styling */
+
+.admin-products-page {
+    padding: 50px 0;
+    background: linear-gradient(to bottom, #fefaf3, #f7f1e7);
+    min-height: 100vh;
+}
+
+.page-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #3b2d1f;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.add-product-btn {
+    background: #e3b47a;
+    border: none;
+    color: #fff;
+    font-weight: bold;
+    padding: 10px 20px;
+    border-radius: 30px;
+    transition: background 0.3s;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.add-product-btn:hover {
+    background: #d6a45a;
+}
+
+.admin-products-table {
+    background: white;
+    padding: 20px;
+    border-radius: 16px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+}
+
+.admin-products-table th,
+.admin-products-table td {
+    vertical-align: middle !important;
+}
+
+.action-btn {
+    border: none;
+    padding: 6px 14px;
+    margin: 0 3px;
+    border-radius: 20px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.edit-btn {
+    background: #84a59d;
+    color: #fff;
+}
+
+.edit-btn:hover {
+    background: #6c9084;
+}
+
+.delete-btn {
+    background: #f28482;
+    color: #fff;
+}
+
+.delete-btn:hover {
+    background: #d86c6a;
+}
+
+/* Form Card */
+.admin-form-card {
+    background: #fff;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+    margin-top: 30px;
+}
+
+.admin-form-card label {
+    font-weight: 600;
+    margin-bottom: 5px;
+    color: #3b2d1f;
+}
+
+.admin-form-card input,
+.admin-form-card select,
+.admin-form-card textarea {
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    font-size: 1rem;
+}
+
+.admin-form-card button {
+    background: #e3b47a;
+    border: none;
+    color: #fff;
+    font-weight: bold;
+    padding: 12px 30px;
+    border-radius: 30px;
+    transition: background 0.3s;
+    margin-top: 20px;
+}
+
+.admin-form-card button:hover {
+    background: #d6a45a;
+}

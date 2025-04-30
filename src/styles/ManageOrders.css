@@ -1,0 +1,128 @@
+/* AdminTables.css */
+
+.admin-orders-page {
+    min-height: 100vh;
+    padding-top: 60px;
+    background: linear-gradient(to bottom, #fefaf3, #f5efe5);
+}
+
+.orders-title {
+    font-family: 'Playfair Display', serif;
+    font-weight: 800;
+    font-size: 2rem;
+    text-align: center;
+    color: #3b2d1f;
+    margin-bottom: 30px;
+}
+
+.orders-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+.orders-table th,
+.orders-table td {
+    padding: 16px 20px;
+    text-align: center;
+}
+
+.orders-table thead {
+    background-color: #f6bd60;
+    color: white;
+    font-weight: bold;
+}
+
+.orders-table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.orders-table tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+.status-badge {
+    padding: 6px 12px;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    display: inline-block;
+    min-width: 90px;
+}
+
+.status-pending {
+    background: #ffe5b4;
+    color: #b8860b;
+}
+
+.status-paid {
+    background: #b8e994;
+    color: #2e8b57;
+}
+
+.status-shipped {
+    background: #9dc6fb;
+    color: #1e90ff;
+}
+
+.status-cancelled {
+    background: #f8d7da;
+    color: #c82333;
+}
+
+.edit-status-btn {
+    background-color: #e3b47a;
+    border: none;
+    padding: 8px 16px;
+    margin-top: 8px;
+    font-weight: bold;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.edit-status-btn:hover {
+    background-color: #d6a45a;
+}
+
+/* רספונסיביות לפלאפון */
+@media (max-width: 768px) {
+    .orders-table thead {
+        display: none;
+    }
+
+    .orders-table,
+    .orders-table tbody,
+    .orders-table tr,
+    .orders-table td {
+        display: block;
+        width: 100%;
+    }
+
+    .orders-table tr {
+        margin-bottom: 15px;
+        background: #fff;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        padding: 16px;
+    }
+
+    .orders-table td {
+        text-align: right;
+        padding: 8px 0;
+        position: relative;
+    }
+
+    .orders-table td::before {
+        content: attr(data-label);
+        font-weight: bold;
+        position: absolute;
+        left: 16px;
+        top: 8px;
+        color: #888;
+        font-size: 0.9rem;
+    }
+}

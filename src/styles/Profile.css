@@ -1,0 +1,158 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&family=Playfair+Display:wght@500;700&display=swap');
+
+/* בסיס */
+html,
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(to bottom, #fffaf0, #f7f1e7);
+    font-family: 'Outfit', sans-serif;
+    color: #3b2d1f;
+}
+
+.profile-page {
+    padding: 60px 20px;
+    min-height: 100vh;
+}
+
+/* כותרות */
+.profile-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.4rem;
+    font-weight: 800;
+    text-align: center;
+    margin-bottom: 2.5rem;
+    color: #3b2d1f;
+}
+
+.section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #3b2d1f;
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+}
+
+/* כרטיסים */
+.profile-card,
+.order-card {
+    background: #fffdf7;
+    border: none;
+    border-radius: 20px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.05);
+    padding: 30px;
+    margin-bottom: 2rem;
+}
+
+.order-card .card-header {
+    background-color: #faf5ef;
+    border-bottom: 1px solid #eee;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    font-weight: 600;
+}
+
+.order-card .badge {
+    font-size: 0.8rem;
+    padding: 6px 10px;
+    border-radius: 20px;
+}
+
+/* טופס עריכה */
+.profile-form label {
+    font-weight: 600;
+    margin-bottom: 6px;
+    display: inline-block;
+}
+
+.profile-form input {
+    border-radius: 12px;
+    border: 1px solid #ccc;
+    padding: 10px 14px;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+/* כפתורים */
+.btn-edit,
+.btn-save,
+.btn-cancel,
+.btn-reorder {
+    background-color: #c89f5d;
+    color: white;
+    font-weight: 600;
+    padding: 10px 24px;
+    border: none;
+    border-radius: 30px;
+    transition: all 0.3s ease-in-out;
+}
+
+.btn-edit:hover,
+.btn-save:hover,
+.btn-cancel:hover,
+.btn-reorder:hover {
+    background-color: #b88c3f;
+    transform: translateY(-2px);
+}
+
+.btn-cancel {
+    background-color: #999 !important;
+}
+
+.btn-cancel:hover {
+    background-color: #777 !important;
+}
+
+/* טבלאות מוצרים */
+.profile-order-table {
+    margin-top: 1rem;
+}
+
+.profile-order-table img {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 6px;
+    margin-right: 10px;
+}
+
+/* רספונסיביות */
+@media (max-width: 768px) {
+    .profile-title {
+        font-size: 2rem;
+    }
+
+    .section-title {
+        font-size: 1.4rem;
+    }
+
+    .profile-card,
+    .order-card {
+        padding: 20px;
+    }
+
+    .btn-edit,
+    .btn-save,
+    .btn-cancel,
+    .btn-reorder {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+}
+
+@media (max-width: 576px) {
+    .profile-title {
+        font-size: 1.8rem;
+    }
+
+    .section-title {
+        font-size: 1.3rem;
+    }
+
+    .profile-order-table img {
+        width: 32px;
+        height: 32px;
+    }
+}

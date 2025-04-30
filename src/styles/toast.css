@@ -1,0 +1,40 @@
+.custom-toast {
+    background-color: #f8f9fa;
+    color: #222;
+    font-family: "Segoe UI", sans-serif;
+    border-left: 5px solid #28a745;
+    padding: 12px 18px;
+    font-size: 0.95rem;
+    border-radius: 6px;
+}
+
+.custom-toast-progress {
+    background-color: #28a745;
+}
+.Toastify__toast--enter {
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.Toastify__toast--enter-active {
+    opacity: 1;
+    transform: translateY(0);
+    transition: all 400ms ease;
+}
+
+.Toastify__toast--exit {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.Toastify__toast--exit-active {
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: all 400ms ease;
+}
+
+.Toastify__toast {
+    border-radius: 12px;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
+    font-family: 'Outfit', sans-serif;
+}

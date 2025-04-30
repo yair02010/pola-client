@@ -1,0 +1,189 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&family=Playfair+Display:wght@500;700&display=swap');
+
+/* רקע לכל המסך */
+html,
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(to bottom, #fffaf0, #f7f1e7) !important;
+    font-family: 'Outfit', sans-serif;
+    color: #3b2d1f;
+}
+
+/* עיטוף ראשי */
+.wishlist-wrapper,
+.cart-page {
+    padding: 60px 20px;
+    min-height: 100vh;
+    background: linear-gradient(to bottom, #fffaf0, #f7f1e7);
+}
+
+/* כותרת */
+.wishlist-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.6rem;
+    font-weight: 800;
+    color: #3b2d1f;
+    text-align: center;
+    margin-bottom: 2rem;
+    position: relative;
+}
+
+.wishlist-title::after {
+    content: "";
+    width: 60px;
+    height: 4px;
+    background: #e3b47a;
+    display: block;
+    margin: 0.5rem auto 0;
+    border-radius: 2px;
+}
+
+/* כרטיס */
+.card.product-card {
+    border: none !important;
+    border-radius: 18px !important;
+    overflow: hidden;
+    transition: all 0.3s ease !important;
+    background: #fffdf7 !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06) !important;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.card.product-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.08);
+}
+
+.card.product-card img {
+    height: 240px;
+    object-fit: cover;
+    width: 100%;
+    border-bottom: 1px solid #f0ece6;
+}
+
+.card.product-card .card-body {
+    padding: 1rem 1.25rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+}
+
+.card.product-card .card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: #2e1e0f;
+}
+
+.card.product-card .card-text {
+    color: #8f7b6b;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+}
+
+.card.product-card .btn {
+    font-size: 0.85rem;
+    border-radius: 25px;
+    font-weight: 500;
+    padding: 0.45rem 0.8rem;
+}
+
+.card.product-card .btn-outline-dark {
+    border-color: #3b2d1f !important;
+    color: #3b2d1f !important;
+}
+
+.card.product-card .btn-outline-dark:hover {
+    background-color: #3b2d1f !important;
+    color: white !important;
+}
+
+/* כפתור הסרה */
+.wishlist-remove-btn {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: #fff;
+    color: #3b2d1f;
+    border: 1px solid #ddd0c0;
+    width: 32px;
+    height: 32px;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    transition: 0.3s ease;
+}
+
+.wishlist-remove-btn:hover {
+    background-color: #ffece1;
+    color: #c03e1d;
+    border-color: #eacdbf;
+}
+
+.btn-back-to-shop,
+.btn-checkout {
+    background-color: #c89f5d;
+    color: white;
+    font-weight: 600;
+    padding: 12px 28px;
+    border-radius: 30px;
+    border: none;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+    transition: 0.3s ease-in-out;
+    display: inline-block;
+    text-decoration: none;
+}
+
+.btn-back-to-shop:hover,
+.btn-checkout:hover {
+    background-color: #b88c3f;
+    transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+    .card.product-card img {
+        height: 200px;
+    }
+
+    .card.product-card .card-title {
+        font-size: 0.95rem;
+    }
+
+    .card.product-card .card-text {
+        font-size: 0.85rem;
+    }
+
+    .card.product-card .btn {
+        font-size: 0.8rem;
+        padding: 0.4rem 0.75rem;
+    }
+
+    .wishlist-title {
+        font-size: 2.2rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .card.product-card {
+        border-radius: 14px;
+    }
+
+    .card.product-card img {
+        height: 180px;
+    }
+
+    .wishlist-title {
+        font-size: 2rem;
+    }
+}

@@ -1,0 +1,84 @@
+footer {
+    background-color: #f3f0ea;
+    color: #2e2318;
+    font-family: 'Outfit', sans-serif;
+    padding: 2rem 0 1rem;
+    border-top: 1px solid #d7cdbf;
+    transition: all 0.3s ease-in-out;
+}
+
+footer h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.75rem;
+    font-weight: 900;
+    color: #c89416;
+    margin-bottom: 0.75rem;
+}
+
+footer h6 {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #2e2318;
+    margin-bottom: 0.5rem;
+}
+
+footer p,
+footer li,
+footer a {
+    font-size: 0.85rem;
+    color: #4a3e32;
+    text-decoration: none;
+    margin-bottom: 0.3rem;
+}
+
+footer a:hover {
+    color: #a97b1b;
+    text-decoration: underline;
+}
+
+footer ul {
+    padding: 0;
+    list-style: none;
+    margin: 0;
+}
+
+footer .social-icons {
+    display: flex;
+    gap: 0.8rem;
+    margin-top: 0.4rem;
+}
+
+footer .social-icons a {
+    font-size: 1rem;
+    color: #c89416;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+footer .social-icons a:hover {
+    transform: scale(1.1);
+    color: #a67312;
+}
+
+footer hr {
+    border-top: 1px solid #d8d1c2;
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+}
+
+footer .copyright {
+    font-size: 0.75rem;
+    color: #8c7a67;
+    text-align: center;
+    font-weight: 500;
+}
+
+@media (max-width: 768px) {
+    footer .row>div {
+        text-align: center;
+        margin-bottom: 1rem;
+    }
+
+    footer .social-icons {
+        justify-content: center;
+    }
+}

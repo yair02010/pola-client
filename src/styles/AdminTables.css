@@ -1,0 +1,118 @@
+/* AdminTables.css */
+
+.manage-orders-page {
+    min-height: 100vh;
+    background: linear-gradient(to bottom, #fdf7f1, #f0ebe5);
+    padding: 60px 20px;
+}
+
+.orders-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.4rem;
+    font-weight: 800;
+    color: #3b2d1f;
+    text-align: center;
+    margin-bottom: 2.5rem;
+    position: relative;
+}
+
+.orders-title::after {
+    content: "";
+    width: 70px;
+    height: 4px;
+    background: #e3b47a;
+    display: block;
+    margin: 0.5rem auto 0;
+    border-radius: 2px;
+}
+
+.orders-table {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    overflow-x: auto;
+}
+
+.orders-table th,
+.orders-table td {
+    text-align: center;
+    vertical-align: middle;
+    padding: 12px;
+}
+
+.orders-table thead {
+    background-color: #f7f1e7;
+}
+
+.orders-table th {
+    font-weight: bold;
+    color: #3b2d1f;
+    font-size: 1rem;
+}
+
+.orders-table td {
+    font-size: 0.95rem;
+}
+
+.status-badge {
+    padding: 6px 14px;
+    border-radius: 25px;
+    font-weight: 600;
+    font-size: 0.85rem;
+}
+
+.status-pending {
+    background: #fff3cd;
+    color: #856404;
+}
+
+.status-paid {
+    background: #d4edda;
+    color: #155724;
+}
+
+.status-shipped {
+    background: #cce5ff;
+    color: #004085;
+}
+
+.status-cancelled {
+    background: #f8d7da;
+    color: #721c24;
+}
+
+.update-btn {
+    background-color: #3b2d1f;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    font-weight: 600;
+    border-radius: 30px;
+    transition: 0.3s;
+}
+
+.update-btn:hover {
+    background-color: #2c1f14;
+}
+
+@media (max-width: 768px) {
+    .orders-title {
+        font-size: 2rem;
+    }
+
+    .orders-table th,
+    .orders-table td {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .orders-title {
+        font-size: 1.8rem;
+    }
+
+    .update-btn {
+        padding: 6px 12px;
+        font-size: 0.85rem;
+    }
+}

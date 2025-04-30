@@ -1,0 +1,87 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&display=swap');
+
+.register-page {
+    font-family: 'Outfit', sans-serif;
+    min-height: 100vh;
+    background: linear-gradient(to bottom, #fffaf0, #f7f1e7);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.register-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #3b2d1f;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.register-card {
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    padding: 30px;
+    width: 100%;
+    max-width: 500px;
+}
+
+.register-card label {
+    font-weight: 600;
+    color: #3b2d1f;
+    margin-bottom: 6px;
+    display: block;
+}
+
+.register-card .form-control {
+    border-radius: 12px;
+    border: 1px solid #ccc;
+    padding: 10px 14px;
+    font-size: 1rem;
+}
+
+.register-card .btn-dark {
+    background-color: #3b2d1f;
+    border: none;
+    border-radius: 30px;
+    padding: 12px 20px;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.register-card .btn-dark:hover {
+    background-color: #2a2015;
+}
+
+.text-danger.small {
+    font-size: 0.85rem;
+    margin-top: 4px;
+}
+
+.alert-danger {
+    font-size: 0.95rem;
+    padding: 10px 16px;
+    border-radius: 12px;
+    background-color: #ffdddd;
+    color: #c0392b;
+    margin-bottom: 1rem;
+}
+
+h5 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #3b2d1f;
+}
+
+@media (max-width: 576px) {
+    .register-title {
+        font-size: 2rem;
+    }
+
+    .register-card {
+        padding: 20px;
+    }
+}
