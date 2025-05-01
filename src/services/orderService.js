@@ -16,12 +16,19 @@ export const getOrderById = async (orderId, token) => {
     return res.data;
 };
 
-export const createOrder = async (orderData, token) => {
-    const res = await api.post(`${API}/orders`, orderData, {
-        headers: { Authorization: `Bearer ${token}` }
-    });
-    return res.data;
-};
+    export const createOrder = async (orderData, token) => {
+    try {
+        const res = await api.post("/orders", orderData, {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+        });
+        return res.data;
+    } catch (error) {
+        console.error("❌ Error creating order:", error.response?.data || error.message);
+        throw error;
+    }
+    };
 
 export const fetchOrders = async (token) => {
     const res = await api.get(`${API}/orders`, {
