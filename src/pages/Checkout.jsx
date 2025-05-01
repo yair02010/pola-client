@@ -39,40 +39,43 @@
     }, []);
 
     const handleCheckout = async () => {
-        const shippingAddress =
+    const shippingAddress =
         deliveryMethod === "delivery"
-            ? useCustomAddress
+        ? useCustomAddress
             ? customAddress
             : userAddress
-            : {};
+        : {};
 
-        const orderPayload = {
+    const orderPayload = {
         items: cart.map((item) => ({
-            productId: item._id,
-            quantity: item.quantity,
+        productId: item._id,
+        quantity: item.quantity,
         })),
         deliveryMethod,
         paymentMethod,
         shippingAddress,
-        };
+    };
 
-        try {
+    const token = localStorage.getItem("token");
+
+    try {
         if (paymentMethod === "credit_card") {
-            const res = await createStripeSession(orderPayload);
-            if (res.url) {
+        const res = await createStripeSession(orderPayload, token);
+        if (res.url) {
             window.location.href = res.url;
-            } else {
-            alert("Stripe redirect failed.");
-            }
         } else {
-            const order = await createOrder(orderPayload);
-            navigate(`/success?orderId=${order._id}`);
+            alert("Stripe redirect failed.");
         }
-        } catch (err) {
+        } else {
+        const order = await createOrder(orderPayload, token); 
+        navigate(`/success?orderId=${order._id}`);
+        }
+    } catch (err) {
         console.error("Checkout error:", err);
         navigate("/cancel");
-        }
+    }
     };
+
 
     return (
         <div className="container py-5">
