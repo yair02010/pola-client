@@ -104,15 +104,6 @@ export default function Home() {
             </form>
             </div>
         </section>
-
-        <section className="brand-strip py-4">
-            <div className="container d-flex justify-content-around flex-wrap">
-            <img src="/images/brand1.png" alt="brand" height={40} />
-            <img src="/images/brand2.png" alt="brand" height={40} />
-            <img src="/images/brand3.png" alt="brand" height={40} />
-            <img src="/images/brand4.png" alt="brand" height={40} />
-            </div>
-        </section>
         </div>
     );
     }

@@ -7,7 +7,7 @@
     import { getMyProfile } from "../services/userService";
 
     export default function Checkout() {
-    const { cart } = useCart();
+    const { cart, clearCart } = useCart();
     const navigate = useNavigate();
 
     const [deliveryMethod, setDeliveryMethod] = useState("pickup");
@@ -23,8 +23,12 @@
         apartment: "",
         entrance: "",
     });
+    const [isSubmitting, setIsSubmitting] = useState(false);
 
-    const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+    const total = cart.reduce(
+        (sum, item) => sum + item.price * item.quantity,
+        0
+    );
 
     useEffect(() => {
         const fetchUser = async () => {
@@ -39,43 +43,50 @@
     }, []);
 
     const handleCheckout = async () => {
-    const shippingAddress =
+        if (isSubmitting) return;
+        setIsSubmitting(true);
+
+        const shippingAddress =
         deliveryMethod === "delivery"
-        ? useCustomAddress
+            ? useCustomAddress
             ? customAddress
             : userAddress
-        : {};
+            : {};
 
-    const orderPayload = {
+        const orderPayload = {
         items: cart.map((item) => ({
-        productId: item._id,
-        quantity: item.quantity,
+            productId: item._id,
+            quantity: item.quantity,
         })),
         deliveryMethod,
         paymentMethod,
         shippingAddress,
-    };
+        };
 
-    const token = localStorage.getItem("token");
+        const token = localStorage.getItem("token");
 
-    try {
+        try {
         if (paymentMethod === "credit_card") {
-        const res = await createStripeSession(orderPayload, token);
-        if (res.url) {
+            const res = await createStripeSession(orderPayload, token);
+            if (res.url) {
+            clearCart();
             window.location.href = res.url;
-        } else {
+            return;
+            } else {
             alert("Stripe redirect failed.");
-        }
+            }
         } else {
-        const order = await createOrder(orderPayload, token); 
-        navigate(`/success?orderId=${order._id}`);
+            const order = await createOrder(orderPayload, token);
+            clearCart();
+            navigate(`/success?orderId=${order._id}`);
         }
-    } catch (err) {
+        } catch (err) {
         console.error("Checkout error:", err);
         navigate("/cancel");
-    }
+        } finally {
+        setIsSubmitting(false);
+        }
     };
-
 
     return (
         <div className="container py-5">
@@ -101,21 +112,16 @@
                 onChange={() => setUseCustomAddress(!useCustomAddress)}
                 id="customAddressCheck"
                 />
-                <label className="form-check-label" htmlFor="customAddressCheck">
+                <label
+                className="form-check-label"
+                htmlFor="customAddressCheck"
+                >
                 Use different address
                 </label>
             </div>
             {useCustomAddress && (
                 <div className="row">
-                {[
-                    "street",
-                    "houseNumber",
-                    "city",
-                    "zipCode",
-                    "floor",
-                    "apartment",
-                    "entrance",
-                ].map((field) => (
+                {["street", "houseNumber", "city", "zipCode", "floor", "apartment", "entrance"].map((field) => (
                     <div className="col-md-6 mb-3" key={field}>
                     <input
                         type="text"
@@ -123,7 +129,10 @@
                         placeholder={field}
                         value={customAddress[field]}
                         onChange={(e) =>
-                        setCustomAddress({ ...customAddress, [field]: e.target.value })
+                        setCustomAddress({
+                            ...customAddress,
+                            [field]: e.target.value,
+                        })
                         }
                     />
                     </div>
@@ -148,7 +157,10 @@
 
         <ul className="list-group mb-3">
             {cart.map((item) => (
-            <li key={item._id} className="list-group-item d-flex justify-content-between">
+            <li
+                key={item._id}
+                className="list-group-item d-flex justify-content-between"
+            >
                 {item.name} x {item.quantity}
                 <span>₪{item.price * item.quantity}</span>
             </li>
@@ -159,8 +171,12 @@
         </ul>
 
         <div className="text-center">
-            <button className="btn btn-warning px-4 py-2 fw-bold" onClick={handleCheckout}>
-            Confirm Order
+            <button
+            className="btn btn-warning px-4 py-2 fw-bold"
+            onClick={handleCheckout}
+            disabled={isSubmitting}
+            >
+            {isSubmitting ? "Processing..." : "Confirm Order"}
             </button>
         </div>
         </div>
