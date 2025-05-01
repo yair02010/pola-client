@@ -1,0 +1,105 @@
+    /* === Checkout.css (Scoped - No Global Impact) === */
+
+    .checkout-page {
+        background: linear-gradient(to bottom right, #fdfaf4, #fffef9);
+        min-height: 100vh;
+        padding-top: 60px;
+        padding-bottom: 60px;
+    }
+
+    .checkout-page .container {
+        max-width: 720px;
+        margin: auto;
+        padding: 2rem;
+        background-color: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+        transition: all 0.3s ease;
+    }
+
+    .checkout-page h2 {
+        font-size: 2.2rem;
+        font-weight: 700;
+        text-align: center;
+        margin-bottom: 2rem;
+        color: #222;
+    }
+
+    .checkout-page .form-label {
+        font-weight: 600;
+        font-size: 1rem;
+        margin-bottom: 0.4rem;
+    }
+
+    .checkout-page select.form-select,
+    .checkout-page input.form-control {
+        border-radius: 14px;
+        padding: 0.8rem 1.2rem;
+        font-size: 1rem;
+        margin-bottom: 1.5rem;
+        border: 1px solid #e0e0e0;
+        background-color: #f9f9f9;
+        transition: border-color 0.2s, background-color 0.2s;
+    }
+
+    .checkout-page input.form-control:focus,
+    .checkout-page select.form-select:focus {
+        border-color: #ffbd00;
+        background-color: #ffffff;
+        box-shadow: 0 0 0 3px rgba(255, 189, 0, 0.2);
+        outline: none;
+    }
+
+    .checkout-page .list-group-item {
+        background: transparent;
+        border: none;
+        font-size: 1rem;
+        padding: 0.75rem 1rem;
+        color: #444;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .checkout-page .list-group-item:last-child {
+        font-weight: bold;
+        font-size: 1.1rem;
+        border-top: 1px solid #ddd;
+        margin-top: 1rem;
+        padding-top: 1rem;
+    }
+
+    .checkout-page .btn-warning {
+        background-color: #ffbd00;
+        border: none;
+        padding: 0.75rem 2rem;
+        border-radius: 14px;
+        font-weight: 700;
+        font-size: 1rem;
+        color: #1a1a1a;
+        box-shadow: 0 4px 16px rgba(255, 189, 0, 0.4);
+        transition: background-color 0.3s, transform 0.2s;
+    }
+
+    .checkout-page .btn-warning:hover {
+        background-color: #e6a700;
+        transform: translateY(-2px);
+    }
+
+    .checkout-page .btn:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
+
+    @media (max-width: 576px) {
+        .checkout-page .container {
+            padding: 1.5rem;
+        }
+
+        .checkout-page h2 {
+            font-size: 1.6rem;
+        }
+
+        .checkout-page .btn-warning {
+            width: 100%;
+        }
+    }

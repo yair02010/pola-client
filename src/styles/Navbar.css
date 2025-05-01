@@ -1,7 +1,7 @@
-/* ===== POLA NAVBAR FULL FIX ===== */
+/* ========== NAVBAR WRAPPER ========== */
 .pola-navbar-wrapper {
     background: #fffdf7;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.04);
     position: sticky;
     top: 0;
     z-index: 1000;
@@ -17,18 +17,19 @@
 }
 
 .pola-logo {
-    font-size: 2.2rem;
+    font-size: 2rem;
     font-weight: 800;
     color: #3b2d1f;
     text-decoration: none;
 }
 
 .gold-letter {
-    background: linear-gradient(45deg, #ffd700, #ffaf00);
+    background: linear-gradient(45deg, #ffc107, #ff9800);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
+/* ========== NAV LINKS ========== */
 .pola-nav-links {
     display: flex;
     align-items: center;
@@ -43,6 +44,7 @@
     font-size: 1rem;
     color: #3b2d1f;
     text-decoration: none;
+    font-weight: 500;
 }
 
 .cart-icon {
@@ -53,18 +55,20 @@
     position: absolute;
     top: -6px;
     right: -10px;
-    background: #d9534f;
+    background: #dc3545;
     color: white;
     font-size: 0.7rem;
     padding: 2px 6px;
     border-radius: 50px;
 }
 
+/* ========== BUTTONS ========== */
 .pola-btn {
     padding: 8px 16px;
     border-radius: 30px;
     font-weight: 600;
-    font-size: 0.95rem;
+    font-size: 0.9rem;
+    cursor: pointer;
 }
 
 .pola-btn.outline {
@@ -78,28 +82,39 @@
     color: white;
 }
 
+/* ========== DROPDOWN ========== */
 .pola-user {
     position: relative;
+    cursor: pointer;
 }
 
 .dropdown-toggle {
     display: flex;
     align-items: center;
-    cursor: pointer;
+    gap: 6px;
+    padding: 6px 10px;
+    border-radius: 10px;
+    transition: background-color 0.2s ease;
     font-weight: 600;
+}
+
+.dropdown-toggle:hover {
+    background-color: #f5f3ec;
 }
 
 .dropdown-menu {
     position: absolute;
-    top: 120%;
+    top: calc(100% + 12px);
     right: 0;
-    background: white;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-    border-radius: 12px;
-    padding: 10px;
-    flex-direction: column;
-    gap: 8px;
+    width: 240px;
+    background-color: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
     display: none;
+    flex-direction: column;
+    padding: 0;
+    z-index: 999;
 }
 
 .dropdown-menu.open {
@@ -108,20 +123,29 @@
 
 .dropdown-menu a,
 .dropdown-menu button {
+    text-align: left;
+    padding: 12px 18px;
+    font-size: 0.95rem;
+    color: #3b2d1f;
     background: none;
     border: none;
-    color: #3b2d1f;
-    text-align: left;
-    padding: 8px 12px;
-    border-radius: 8px;
+    width: 100%;
+    transition: background 0.2s ease;
 }
 
 .dropdown-menu a:hover,
 .dropdown-menu button:hover {
-    background-color: #f5f2eb;
+    background-color: #f9f6f1;
 }
 
-/* Mobile */
+.dropdown-menu hr {
+    border: none;
+    height: 1px;
+    background-color: #eee;
+    margin: 8px 0;
+}
+
+/* ========== MOBILE MENU ========== */
 .pola-toggle-menu {
     display: none;
 }
@@ -143,12 +167,18 @@
         height: 100vh;
         background: #fffdf7;
         flex-direction: column;
-        padding: 6rem 1.5rem 2rem;
+        padding: 5rem 1.5rem 2rem;
         gap: 1.5rem;
         transition: right 0.4s ease;
     }
 
     .pola-nav-links.open {
         right: 0;
+    }
+
+    .dropdown-menu {
+        position: static;
+        box-shadow: none;
+        border-radius: 0;
     }
 }

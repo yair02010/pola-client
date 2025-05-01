@@ -1,10 +1,10 @@
-    // Checkout.jsx
     import { useCart } from "../contexts/CartContext";
     import { useState, useEffect } from "react";
     import { useNavigate } from "react-router-dom";
     import { createOrder } from "../services/orderService";
     import { createStripeSession } from "../services/paymentService";
     import { getMyProfile } from "../services/userService";
+    import "../styles/Checkout.css"; // ודא שזה קיים
 
     export default function Checkout() {
     const { cart, clearCart } = useCart();
@@ -23,12 +23,9 @@
         apartment: "",
         entrance: "",
     });
-    const [isSubmitting, setIsSubmitting] = useState(false);
 
-    const total = cart.reduce(
-        (sum, item) => sum + item.price * item.quantity,
-        0
-    );
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
     useEffect(() => {
         const fetchUser = async () => {
@@ -89,95 +86,101 @@
     };
 
     return (
-        <div className="container py-5">
-        <h2 className="fw-bold mb-4 text-center">🛒 Checkout</h2>
-        <div className="mb-3">
+        <div className="checkout-page">
+        <div className="container">
+            <h2 className="fw-bold mb-4 text-center">🛒 Checkout</h2>
+
+            <div className="mb-3">
             <label className="form-label">Delivery Method:</label>
             <select
-            className="form-select"
-            value={deliveryMethod}
-            onChange={(e) => setDeliveryMethod(e.target.value)}
+                className="form-select"
+                value={deliveryMethod}
+                onChange={(e) => setDeliveryMethod(e.target.value)}
             >
-            <option value="pickup">Pickup from Store</option>
-            <option value="delivery">Delivery to your address</option>
+                <option value="pickup">Pickup from Store</option>
+                <option value="delivery">Delivery to your address</option>
             </select>
-        </div>
-        {deliveryMethod === "delivery" && (
-            <>
-            <div className="form-check mb-2">
-                <input
-                className="form-check-input"
-                type="checkbox"
-                checked={useCustomAddress}
-                onChange={() => setUseCustomAddress(!useCustomAddress)}
-                id="customAddressCheck"
-                />
-                <label
-                className="form-check-label"
-                htmlFor="customAddressCheck"
-                >
-                Use different address
-                </label>
             </div>
-            {useCustomAddress && (
+
+            {deliveryMethod === "delivery" && (
+            <>
+                <div className="form-check mb-2">
+                <input
+                    className="form-check-input"
+                    type="checkbox"
+                    checked={useCustomAddress}
+                    onChange={() => setUseCustomAddress(!useCustomAddress)}
+                    id="customAddressCheck"
+                />
+                <label className="form-check-label" htmlFor="customAddressCheck">
+                    Use different address
+                </label>
+                </div>
+                {useCustomAddress && (
                 <div className="row">
-                {["street", "houseNumber", "city", "zipCode", "floor", "apartment", "entrance"].map((field) => (
+                    {[
+                    "street",
+                    "houseNumber",
+                    "city",
+                    "zipCode",
+                    "floor",
+                    "apartment",
+                    "entrance",
+                    ].map((field) => (
                     <div className="col-md-6 mb-3" key={field}>
-                    <input
+                        <input
                         type="text"
                         className="form-control"
                         placeholder={field}
                         value={customAddress[field]}
                         onChange={(e) =>
-                        setCustomAddress({
+                            setCustomAddress({
                             ...customAddress,
                             [field]: e.target.value,
-                        })
+                            })
                         }
-                    />
+                        />
                     </div>
-                ))}
+                    ))}
                 </div>
-            )}
+                )}
             </>
-        )}
+            )}
 
-        <div className="mb-3">
+            <div className="mb-3">
             <label className="form-label">Payment Method:</label>
             <select
-            className="form-select"
-            value={paymentMethod}
-            onChange={(e) => setPaymentMethod(e.target.value)}
+                className="form-select"
+                value={paymentMethod}
+                onChange={(e) => setPaymentMethod(e.target.value)}
             >
-            <option value="credit_card">Credit Card (Stripe)</option>
-            <option value="cash_in_store">Cash in Store</option>
-            <option value="cash_on_delivery">Cash on Delivery</option>
+                <option value="credit_card">Credit Card (Stripe)</option>
+                <option value="cash_in_store">Cash in Store</option>
+                <option value="cash_on_delivery">Cash on Delivery</option>
             </select>
-        </div>
+            </div>
 
-        <ul className="list-group mb-3">
+            <ul className="list-group mb-3">
             {cart.map((item) => (
-            <li
-                key={item._id}
-                className="list-group-item d-flex justify-content-between"
-            >
+                <li key={item._id} className="list-group-item d-flex justify-content-between">
                 {item.name} x {item.quantity}
                 <span>₪{item.price * item.quantity}</span>
-            </li>
+                </li>
             ))}
             <li className="list-group-item d-flex justify-content-between fw-bold">
-            Total <span>₪{total}</span>
+                Total <span>₪{total}</span>
             </li>
-        </ul>
+            </ul>
 
-        <div className="text-center">
+            <div className="text-center">
             <button
-            className="btn btn-warning px-4 py-2 fw-bold"
-            onClick={handleCheckout}
-            disabled={isSubmitting}
+                className="btn btn-warning px-4 py-2 fw-bold"
+                onClick={handleCheckout}
+                disabled={isSubmitting}
             >
-            {isSubmitting ? "Processing..." : "Confirm Order"}
+                {isSubmitting ? "Processing..." : "Confirm Order"}
             </button>
+            </div>
         </div>
         </div>
     );
