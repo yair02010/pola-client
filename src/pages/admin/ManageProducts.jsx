@@ -40,7 +40,7 @@
         <div className="admin-products container py-5">
         <div className="d-flex justify-content-between align-items-center mb-4">
             <h2 className="admin-title">🛒 Manage Products</h2>
-            <Link to="/admin/products/new" className="btn btn-success">
+            <Link to="/admin/products/add" className="btn btn-success">
             ➕ Add Product
             </Link>
         </div>
