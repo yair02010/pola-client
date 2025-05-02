@@ -25,7 +25,7 @@
     }, []);
 
     const filteredProducts = selectedCategory
-        ? products.filter((p) => p.category === selectedCategory)
+        ? products.filter((p) => p.category?.toString() === selectedCategory)
         : [];
 
     return (
