@@ -4,7 +4,7 @@
     import { createOrder } from "../services/orderService";
     import { createStripeSession } from "../services/paymentService";
     import { getMyProfile } from "../services/userService";
-    import "../styles/Checkout.css"; // ודא שזה קיים
+    import "../styles/Checkout.css";
 
     export default function Checkout() {
     const { cart, clearCart } = useCart();
@@ -25,7 +25,10 @@
     });
 
     const [isSubmitting, setIsSubmitting] = useState(false);
-    const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+
+    // חישוב כולל עם עיגול כלפי מעלה לאגורות
+    const rawTotal = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+    const total = Math.ceil(rawTotal * 100) / 100;
 
     useEffect(() => {
         const fetchUser = async () => {
@@ -164,11 +167,11 @@
             {cart.map((item) => (
                 <li key={item._id} className="list-group-item d-flex justify-content-between">
                 {item.name} x {item.quantity}
-                <span>₪{item.price * item.quantity}</span>
+                <span>₪{(item.price * item.quantity).toFixed(2)}</span>
                 </li>
             ))}
             <li className="list-group-item d-flex justify-content-between fw-bold">
-                Total <span>₪{total}</span>
+                Total <span>₪{total.toFixed(2)}</span>
             </li>
             </ul>
 
@@ -178,7 +181,7 @@
                 onClick={handleCheckout}
                 disabled={isSubmitting}
             >
-                {isSubmitting ? "Processing..." : "Confirm Order"}
+                {isSubmitting ? "Processing..." : `Confirm Order • ₪${total.toFixed(2)}`}
             </button>
             </div>
         </div>
