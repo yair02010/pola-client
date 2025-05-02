@@ -1,17 +1,23 @@
     import { useCart } from "../contexts/CartContext";
     import { Link, useNavigate } from "react-router-dom";
-    import { useState, useEffect, useRef } from "react";
+    import { useState, useRef, useEffect } from "react";
     import {
-    FiUser, FiLogOut, FiHeart, FiShoppingBag, FiShoppingCart, FiMenu, FiX
+    FiUser,
+    FiLogOut,
+    FiHeart,
+    FiShoppingBag,
+    FiShoppingCart,
+    FiMenu,
+    FiX,
     } from "react-icons/fi";
     import { MdAdminPanelSettings } from "react-icons/md";
-    import { getProfile } from "../services/authService";
+    import { useUser } from "../contexts/UserContext";
     import "../styles/Navbar.css";
 
     export default function Navbar() {
     const { cart } = useCart();
     const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-    const [user, setUser] = useState(null);
+    const { user, setUser } = useUser();
     const [menuOpen, setMenuOpen] = useState(false);
     const [dropdownOpen, setDropdownOpen] = useState(false);
     const navigate = useNavigate();
@@ -19,16 +25,6 @@
     const navRef = useRef();
     const dropdownRef = useRef();
 
-    useEffect(() => {
-        const token = localStorage.getItem("token");
-        if (token) {
-        getProfile(token)
-            .then((data) => setUser(data))
-            .catch(() => setUser(null));
-        }
-    }, []);
-
-    // סגירה אוטומטית בלחיצה מחוץ
     useEffect(() => {
         const handleClickOutside = (e) => {
         if (navRef.current && !navRef.current.contains(e.target)) {
@@ -87,7 +83,9 @@
             <li className="cart-icon">
                 <Link to="/cart" className="pola-link" onClick={closeMenu}>
                 <FiShoppingCart /> Cart
-                {totalItems > 0 && <span className="cart-badge">{totalItems}</span>}
+                {totalItems > 0 && (
+                    <span className="cart-badge">{totalItems}</span>
+                )}
                 </Link>
             </li>
 
@@ -112,17 +110,17 @@
                 {dropdownOpen && (
                     <ul className="dropdown-menu open">
                     <li>
-                        <Link to="/profile" onClick={() => { setDropdownOpen(false); }}>
+                        <Link to="/profile" onClick={() => setDropdownOpen(false)}>
                         Profile
                         </Link>
                     </li>
                     <li>
-                        <Link to="/wishlist" onClick={() => { setDropdownOpen(false); }}>
+                        <Link to="/wishlist" onClick={() => setDropdownOpen(false)}>
                         Wishlist
                         </Link>
                     </li>
                     <li>
-                        <Link to="/cart" onClick={() => { setDropdownOpen(false); }}>
+                        <Link to="/cart" onClick={() => setDropdownOpen(false)}>
                         My Cart
                         </Link>
                     </li>
@@ -130,27 +128,27 @@
                         <>
                         <hr />
                         <li>
-                            <Link to="/admin/dashboard" onClick={() => { setDropdownOpen(false); }}>
+                            <Link to="/admin/dashboard" onClick={() => setDropdownOpen(false)}>
                             Admin Dashboard
                             </Link>
                         </li>
                         <li>
-                            <Link to="/admin/products" onClick={() => { setDropdownOpen(false); }}>
+                            <Link to="/admin/products" onClick={() => setDropdownOpen(false)}>
                             Manage Products
                             </Link>
                         </li>
                         <li>
-                            <Link to="/admin/orders" onClick={() => { setDropdownOpen(false); }}>
+                            <Link to="/admin/orders" onClick={() => setDropdownOpen(false)}>
                             Manage Orders
                             </Link>
                         </li>
                         <li>
-                            <Link to="/admin/categories" onClick={() => { setDropdownOpen(false); }}>
+                            <Link to="/admin/categories" onClick={() => setDropdownOpen(false)}>
                             Manage Categories
                             </Link>
                         </li>
                         <li>
-                            <Link to="/admin/users" onClick={() => { setDropdownOpen(false); }}>
+                            <Link to="/admin/users" onClick={() => setDropdownOpen(false)}>
                             Manage Users
                             </Link>
                         </li>

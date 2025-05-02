@@ -2,6 +2,7 @@
     import { Formik, Form, Field, ErrorMessage } from "formik";
     import * as Yup from "yup";
     import { loginUser } from "../services/authService";
+    import { useUser } from "../contexts/UserContext";
     import "../styles/Login.css";
 
     const LoginSchema = Yup.object({
@@ -11,12 +12,14 @@
 
     export default function Login() {
     const navigate = useNavigate();
+    const { reloadUser } = useUser();
 
     const handleSubmit = async (values, { setSubmitting, setErrors }) => {
         try {
         const data = await loginUser(values);
         localStorage.setItem("token", data.token);
-        localStorage.setItem("user", JSON.stringify(data.user)); 
+        localStorage.setItem("user", JSON.stringify(data.user));
+        await reloadUser();
         if (data.user.role === "admin") {
             navigate("/admin/dashboard");
         } else {
@@ -42,18 +45,28 @@
         >
             {({ isSubmitting, errors }) => (
             <Form className="login-card shadow p-4">
-                {errors.submit && <div className="alert alert-danger">{errors.submit}</div>}
+                {errors.submit && (
+                <div className="alert alert-danger">{errors.submit}</div>
+                )}
 
                 <div className="mb-3">
                 <label>Email</label>
                 <Field name="email" type="email" className="form-control" />
-                <ErrorMessage name="email" component="div" className="text-danger small" />
+                <ErrorMessage
+                    name="email"
+                    component="div"
+                    className="text-danger small"
+                />
                 </div>
 
                 <div className="mb-3">
                 <label>Password</label>
                 <Field name="password" type="password" className="form-control" />
-                <ErrorMessage name="password" component="div" className="text-danger small" />
+                <ErrorMessage
+                    name="password"
+                    component="div"
+                    className="text-danger small"
+                />
                 </div>
 
                 <button

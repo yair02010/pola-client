@@ -46,11 +46,11 @@
 
     export const fetchMyOrders = async () => {
     const token = localStorage.getItem("token");
-    const res = await api.get(`${API}/orders/mine`, {
-        headers: { Authorization: `Bearer ${token}` },
+    const res = await api.get(`${API}/orders/my-orders`, {
+    headers: { Authorization: `Bearer ${token}` },
     });
     return res.data;
-    };
+};
 
     export const deleteUserById = async (userId, token) => {
     await api.delete(`${API}/users/${userId}`, {
