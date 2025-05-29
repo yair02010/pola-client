@@ -35,7 +35,7 @@
             <span className="hero-badge">New Collection 2025</span>
             <h1 className="hero-title">Second-hand. First class.</h1>
             <p className="hero-subtitle">Vintage & curated fashion for every soul</p>
-            <a href="/shop" className="btn btn-shop mt-3">Shop Now →</a>
+            <link to="/shop" className="btn btn-shop mt-3">Shop Now →</link>
             <ul className="hero-benefits">
                 <li>♻️ Eco-Friendly</li>
                 <li>🚚 Free Shipping</li>
