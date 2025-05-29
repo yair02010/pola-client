@@ -1,0 +1,79 @@
+    .admin-products {
+        max-width: 1200px;
+        margin: auto;
+    }
+
+    .product-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 1.5rem;
+    }
+
+    .product-card {
+        border: 1px solid #ddd;
+        padding: 1rem;
+        border-radius: 12px;
+        background-color: #fffaf5;
+        box-shadow: 0 0 8px rgba(0, 0, 0, 0.05);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .product-img {
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
+        border-radius: 8px;
+        margin-bottom: 0.5rem;
+    }
+
+    .product-name {
+        font-size: 1.1rem;
+        margin-bottom: 0.2rem;
+        font-weight: 600;
+    }
+
+    .product-price {
+        color: #333;
+        font-weight: bold;
+        margin-bottom: 0.5rem;
+    }
+
+    .product-details {
+        font-size: 0.9rem;
+        color: #555;
+        margin-bottom: 0.5rem;
+    }
+
+    .product-status {
+        display: flex;
+        gap: 0.5rem;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 1rem;
+    }
+
+    .status-badge {
+        padding: 0.25em 0.6em;
+        font-size: 0.75rem;
+        border-radius: 0.35rem;
+        color: white;
+        font-weight: 600;
+    }
+
+    .stock-icon {
+        font-size: 0.85rem;
+    }
+
+    .product-actions .btn {
+        font-size: 0.9rem;
+        border-radius: 0.5rem;
+    }
+
+    .pagination-controls {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+    }

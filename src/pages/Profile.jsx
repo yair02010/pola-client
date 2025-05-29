@@ -150,7 +150,6 @@
             </Formik>
         )}
 
-        {/* Orders section */}
         <h4 className="section-title mt-5">📦 My Orders</h4>
 
         {orders.length === 0 ? (

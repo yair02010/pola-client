@@ -1,48 +1,52 @@
-import { useEffect, useState } from "react";
-import { toast } from "react-toastify";
-import { format } from "date-fns";
-import { Link } from "react-router-dom";
-import { fetchOrders, updateOrderStatus } from "../../services/orderService";
-import "../../styles/ManageOrders.css";
+import { useEffect, useState } from "react"
+import { toast } from "react-toastify"
+import { format } from "date-fns"
+import { Link } from "react-router-dom"
+import { fetchOrders, updateOrderStatus } from "../../services/orderService"
+import "../../styles/ManageOrders.css"
 
 export default function ManageOrders() {
-    const [orders, setOrders] = useState([]);
+    const [orders, setOrders] = useState([])
+    const [currentPage, setCurrentPage] = useState(1)
+    const ordersPerPage = 10
 
     useEffect(() => {
-        loadOrders();
-    }, []);
+        loadOrders()
+    }, [])
 
     const loadOrders = async () => {
         try {
-            const token = localStorage.getItem("token");
-            const data = await fetchOrders(token);
-            setOrders(data);
-        } catch (err) {
-            console.error("Failed to fetch orders:", err);
-            toast.error("Failed to load orders ❌");
+            const token = localStorage.getItem("token")
+            const data = await fetchOrders(token)
+            setOrders(data)
+        } catch {
+            toast.error("Failed to load orders ❌")
         }
-    };
+    }
 
     const handleStatusChange = async (id, status) => {
-        const paymentMethod = "credit_card"; // הוספנו את שיטת התשלום
-        const deliveryMethod = "delivery";  // הוספנו את שיטת המשלוח
-
+        const paymentMethod = "credit_card"
+        const deliveryMethod = "delivery"
         try {
-            const token = localStorage.getItem("token");
-            await updateOrderStatus(id, status, paymentMethod, deliveryMethod, token);  // שלחנו את המידע הנדרש
-            toast.success("Order status updated ✅");
-            loadOrders(); // טוען את ההזמנות מחדש
-        } catch (err) {
-            console.error("Failed to update status:", err);
-            toast.error("Failed to update status ❌");
+            const token = localStorage.getItem("token")
+            await updateOrderStatus(id, status, paymentMethod, deliveryMethod, token)
+            toast.success("Order status updated ✅")
+            loadOrders()
+        } catch {
+            toast.error("Failed to update status ❌")
         }
-    };
+    }
+
+    const indexOfLastOrder = currentPage * ordersPerPage
+    const indexOfFirstOrder = indexOfLastOrder - ordersPerPage
+    const currentOrders = orders.slice(indexOfFirstOrder, indexOfLastOrder)
+    const totalPages = Math.ceil(orders.length / ordersPerPage)
 
     return (
         <div className="admin-page container py-5">
-            <h2 className="page-title mb-4">📦 Manage Orders</h2>
+            <h2 className="page-title mb-4 text-center">📦 Manage Orders</h2>
             <div className="table-responsive shadow-sm rounded-4">
-                <table className="table align-middle bg-white">
+                <table className="table align-middle bg-white text-center">
                     <thead className="table-light">
                         <tr>
                             <th>#</th>
@@ -55,9 +59,9 @@ export default function ManageOrders() {
                         </tr>
                     </thead>
                     <tbody>
-                        {orders.map((order, index) => (
+                        {currentOrders.map((order, index) => (
                             <tr key={order._id}>
-                                <td>{index + 1}</td>
+                                <td>{indexOfFirstOrder + index + 1}</td>
                                 <td>{order.user?.name || "Unknown"}</td>
                                 <td>₪{order.totalAmount.toLocaleString()}</td>
                                 <td>{format(new Date(order.createdAt), "dd/MM/yyyy")}</td>
@@ -88,6 +92,19 @@ export default function ManageOrders() {
                     </tbody>
                 </table>
             </div>
+            {totalPages > 1 && (
+                <div className="d-flex justify-content-center mt-4 gap-2">
+                    {[...Array(totalPages)].map((_, i) => (
+                        <button
+                            key={i}
+                            onClick={() => setCurrentPage(i + 1)}
+                            className={`btn btn-sm ${currentPage === i + 1 ? "btn-dark" : "btn-outline-secondary"}`}
+                        >
+                            {i + 1}
+                        </button>
+                    ))}
+                </div>
+            )}
         </div>
-    );
+    )
 }

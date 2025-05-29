@@ -130,7 +130,6 @@ body {
     border-color: #eacdbf;
 }
 
-/* רספונסיביות */
 @media (max-width: 768px) {
     .card.product-card img {
         height: 200px;

@@ -26,7 +26,6 @@
 
     const [isSubmitting, setIsSubmitting] = useState(false);
 
-    // חישוב כולל עם עיגול כלפי מעלה לאגורות
     const rawTotal = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
     const total = Math.ceil(rawTotal * 100) / 100;
 
