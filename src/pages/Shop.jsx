@@ -10,6 +10,8 @@
     const [selectedCategory, setSelectedCategory] = useState("");
     const [search, setSearch] = useState("");
     const [sort, setSort] = useState("");
+    const [currentPage, setCurrentPage] = useState(1);
+    const productsPerPage = 6;
 
     useEffect(() => {
         loadShopData();
@@ -37,6 +39,7 @@
         }
 
         setFiltered(list);
+        setCurrentPage(1);
     }, [selectedCategory, products, search, sort]);
 
     const loadShopData = async () => {
@@ -50,10 +53,14 @@
         }
     };
 
+    const indexOfLastProduct = currentPage * productsPerPage;
+    const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
+    const currentProducts = filtered.slice(indexOfFirstProduct, indexOfLastProduct);
+    const totalPages = Math.ceil(filtered.length / productsPerPage);
+
     return (
         <div className="container shop-page">
         <div className="row">
-            {/* Sidebar */}
             <div className="col-md-3 mb-4">
             <h5 className="fw-bold mb-3">Filter by Category</h5>
             <ul className="list-group">
@@ -77,7 +84,6 @@
             </ul>
             </div>
 
-            {/* Main */}
             <div className="col-md-9">
             <div className="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-3">
                 <h4 className="fw-bold m-0">Shop Items</h4>
@@ -103,8 +109,8 @@
             </div>
 
             <div className="row">
-                {filtered.length > 0 ? (
-                filtered.map((product) => (
+                {currentProducts.length > 0 ? (
+                currentProducts.map((product) => (
                     <div key={product._id} className="col-md-4 col-sm-6 mb-4">
                     <ProductCard product={product} />
                     </div>
@@ -113,6 +119,22 @@
                 <p className="text-center">No products found.</p>
                 )}
             </div>
+
+            {totalPages > 1 && (
+                <div className="d-flex justify-content-center gap-2">
+                {[...Array(totalPages)].map((_, i) => (
+                    <button
+                    key={i}
+                    onClick={() => setCurrentPage(i + 1)}
+                    className={`btn btn-sm ${
+                        currentPage === i + 1 ? "btn-dark" : "btn-outline-secondary"
+                    }`}
+                    >
+                    {i + 1}
+                    </button>
+                ))}
+                </div>
+            )}
             </div>
         </div>
         </div>
