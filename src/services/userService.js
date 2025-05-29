@@ -80,7 +80,7 @@
     };
 
     export const getMyOrders = async (token) => {
-    const res = await api.get(`${API}/orders/mine`, {
+    const res = await api.get(`${API}/orders/my-orders`, {
         headers: { Authorization: `Bearer ${token}` },
     });
     return res.data;
