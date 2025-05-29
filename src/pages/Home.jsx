@@ -44,46 +44,6 @@
             </div>
         </section>
 
-        <section className="category-section py-5">
-            <div className="container">
-            <h2 className="section-title text-center mb-5">Shop by Category</h2>
-            <div className="row justify-content-center g-4">
-                {categories.map((cat) => (
-                <div key={cat._id} className="col-6 col-sm-4 col-md-3 text-center">
-                    <div
-                    className={`category-card ${selectedCategory === cat._id ? "active" : ""}`}
-                    onClick={() => setSelectedCategory(cat._id)}
-                    style={{ cursor: "pointer" }}
-                    >
-                    <span>{cat.name}</span>
-                    </div>
-                </div>
-                ))}
-            </div>
-            </div>
-        </section>
-
-        {selectedCategory && (
-            <section className="filtered-products-section py-5 bg-light">
-            <div className="container">
-                <h2 className="section-title text-center mb-4">
-                Products in "{categories.find(c => c._id === selectedCategory)?.name}"
-                </h2>
-                <div className="row">
-                {filteredProducts.length === 0 ? (
-                    <p className="text-center">No products in this category yet.</p>
-                ) : (
-                    filteredProducts.map((product) => (
-                    <div key={product._id} className="col-md-3 col-sm-6 mb-4">
-                        <ProductCard product={product} />
-                    </div>
-                    ))
-                )}
-                </div>
-            </div>
-            </section>
-        )}
-
         <section className="featured-section py-5 bg-light">
             <div className="container">
             <h2 className="section-title text-center mb-5">🌟 Featured Items</h2>
